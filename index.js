@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Core JavaScript logic for the Phone Book Application.
+ * This file defines the data structure for phone book entries and provides
+ * functions for managing these entries (add, update, delete, sort, search).
+ * It utilizes a hybrid approach: an Array for sorting/iteration and a Map
+ * for efficient O(1) average-case lookups, updates, and deletions by ID.
+ */
+
 //Store Phone Book entries in an array
 let phoneBook = [];
 
@@ -18,7 +26,13 @@ function generateUniqueId() {
   return "_" + Math.random().toString(36).substring(2, 11);
 }
 
-//Add a new entry
+/**
+ * This function creates a new phone book entry and it adds it to both the 'phoneBook' array and the 'PhoneBookMap' for efficient access.
+ * @param {string} name - Name of the contact.
+ * @param {string} phoneNumber - The phone number of the contact.
+ * @param {string} details - Any details they might add.
+ * @returns
+ */
 function addEntry(name, phoneNumber, details) {
   if (!name || !phoneNumber) {
     console.error("Error: name and Phone Number are required to add and entry");
@@ -58,7 +72,7 @@ function updateEntry(id, updatedData) {
 
 /**
  * Deletes an entry from the Phone Book. Removes it from both the Map and the array. The map if O(1) average, the array O(n).
- * @param {string} id - If of the entry to delete
+ * @param {string} id - The ID of the entry to delete
  * @returns {boolean} - True if the entry was found and deleted, false otherwise.
  */
 
@@ -110,8 +124,8 @@ function sortEntries(criterion, order) {
   }
 
   phoneBook.sort((a, b) => {
-    const valA = String(a[criterion]).toLocaleLowerCase();
-    const valB = String(b[criterion]).toLocaleLowerCase();
+    const valA = String(a[criterion]).toLowerCase();
+    const valB = String(b[criterion]).toLowerCase();
 
     //Use this localeCompare for string sorting
     const comparison = valA.localeCompare(valB);
@@ -145,5 +159,3 @@ function searchEntries(searchTerm) {
   console.log(`Search for ${searchTerm} found ${filtered.length} entries.`);
   return filtered;
 }
-
-//testing
