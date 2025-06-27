@@ -145,3 +145,5 @@ function searchEntries(searchTerm) {
   console.log(`Search for ${searchTerm} found ${filtered.length} entries.`);
   return filtered;
 }
+
+//testing
