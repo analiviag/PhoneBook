@@ -6,7 +6,7 @@ This document outlines the usage and features of a simple phone book management 
 
 ## Demonstration of Usage
 
-The following examples illustrate the core functionalities of the phone book system. You can copy and paste this entire file into a browser's console or run it with Node.js to see the output.
+The following examples illustrate the core functionalities of the phone book system. You can copy and paste this entire file into a browser's console to see the output.
 
 ### Initialization and Adding Entries
 
