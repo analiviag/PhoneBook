@@ -6,7 +6,7 @@ This document outlines the usage and features of a simple phone book management 
 
 ## Demonstration of Usage
 
-The following examples illustrate the core functionalities of the phone book system.
+The following examples illustrate the core functionalities of the phone book system. You can copy and paste this entire file into a browser's console or run it with Node.js to see the output.
 
 ### Initialization and Adding Entries
 
@@ -29,7 +29,13 @@ const bob = addEntry(
 addEntry("Charlie Brown", "555-123-4567", "Family member.");
 addEntry("David Lee", "111-222-3333", "Client, call after 2 PM.");
 addEntry("Eve Adams", "444-555-6666", "Gym buddy.");
-console.log("Current Phone Book Array:", phoneBook);
+addEntry("Anna Green", "999-888-7777", "Old friend from college.");
+addEntry("Zoe White", "000-000-0000", "New contact for testing sorting.");
+
+console.log("Current Phone Book Array (initial order):");
+phoneBook.forEach((entry) =>
+  console.log(`- ${entry.name}, ${entry.phoneNumber}`)
+);
 console.log("Current Phone Book Map Size:", phoneBookMap.size);
 ```
 
@@ -44,7 +50,10 @@ if (alice) {
     details: "Friend, updated number.",
   });
 }
-console.log("Phone Book Array after update (check Alice):", phoneBook);
+console.log("Phone Book Array after update (check Alice):");
+phoneBook.forEach((entry) =>
+  console.log(`- ${entry.name}, ${entry.phoneNumber}`)
+);
 ```
 
 ### Sorting Entries
@@ -55,10 +64,14 @@ You can sort the phone book entries by different fields (e.g., name, phoneNumber
 console.log("\n--- Sorting by Name (Ascending) ---");
 sortEntries("name", "asc");
 console.log("Sorted Phone Book Array:", phoneBook);
+phoneBook.forEach((entry) => console.log(`- ${entry.name}`));
 
 console.log("\n--- Sorting by Phone Number (Descending) ---");
 sortEntries("phoneNumber", "desc");
 console.log("Sorted Phone Book Array:", phoneBook);
+phoneBook.forEach((entry) =>
+  console.log(`-${entry.phoneNumber} (${entry.name})`)
+);
 ```
 
 ### Searching for Entries
@@ -68,11 +81,25 @@ The system allows you to search for entries based on keywords, which can match n
 ```javascript
 console.log('\n--- Searching for "Smith" ---');
 const searchResults1 = searchEntries("Smith");
-console.log('Search Results ("Smith"):', searchResults1);
+console.log('Search Results ("Smith"):');
+if (searchResults1.length > 0) {
+  searchResults1.forEach((entry) =>
+    console.log(`- ${entry.name}, ${entry.phoneNumber}`)
+  );
+} else {
+  console.log('No entries found for "Smith".');
+}
 
 console.log('\n--- Searching for "555" (in phone numbers) ---');
 const searchResults2 = searchEntries("555");
-console.log('Search Results ("555"):', searchResults2);
+console.log('Search Results ("555"):');
+if (searchResults2.length > 0) {
+  searchResults2.forEach((entry) =>
+    console.log(`- ${entry.name}, ${entry.phoneNumber}`)
+  );
+} else {
+  console.log('No entries found for "555".');
+}
 ```
 
 ### Deleting an Entry
@@ -90,5 +117,6 @@ console.log("Final Phone Book Map Size:", phoneBookMap.size);
 // Try to delete a non-existent entry
 console.log("\n--- Attempting to delete non-existent entry ---");
 deleteEntry("nonExistentId123");
-console.log("Phone Book Array after failed deletion attempt:", phoneBook);
+console.log("Phone Book Array after failed deletion attempt:");
+phoneBook.forEach((entry) => console.log(`- ${entry.name}`));
 ```

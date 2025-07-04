@@ -45,19 +45,18 @@ function addEntry(name, phoneNumber, details) {
     details: details.trim(),
   };
   phoneBook.push(newEntry); //Adds a new entry to the array
-  phoneBookMap.set(newEntry.id, newEntry); // Add to map for O(1) when looking
+  phoneBookMap.set(newEntry.id, newEntry); // Add to map for O(1) when looking (map.set for adding and updating / map.get for retrieving. This makes the hash map calculate a direct memory location for the key, giving it a O(1).)
   console.log("Entry added:", newEntry);
   return newEntry;
 }
 
 /**
- *
+ *Function to Update an entry by it's unique ID.
  * @param {string} id - The ID to update.
  * @param {Object} updatedData - an object containing the new properties (name, phone number, details).
  * @returns {boolean} - True if the entry was found and updated, false if not.
  */
 
-//Update entry
 function updateEntry(id, updatedData) {
   const entryToUpdate = phoneBookMap.get(id);
   if (entryToUpdate) {
@@ -71,7 +70,7 @@ function updateEntry(id, updatedData) {
 }
 
 /**
- * Deletes an entry from the Phone Book. Removes it from both the Map and the array. The map if O(1) average, the array O(n).
+ * Deletes an entry from the Phone Book. Removes it from both the Map and the array. The map is O(1) average, the array O(n).
  * @param {string} id - The ID of the entry to delete
  * @returns {boolean} - True if the entry was found and deleted, false otherwise.
  */
@@ -106,7 +105,7 @@ function deleteEntry(id) {
  * Sorts the entries based on a specified criterion and order.
  * Remember this localeCompare for string comparison in future.
  * @param {string} criterion - The property to sort by (name or phoneNumber).
- * @param {string} order - The sort oder (asc for ascending, desc for descending).
+ * @param {string} order - The sort order (asc for ascending, desc for descending).
  * @returns {void}
  */
 
